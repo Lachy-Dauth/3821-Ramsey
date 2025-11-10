@@ -1,0 +1,48 @@
+{
+  "iteration": 1,
+  "n_vertices": 4,
+  "ramsey_values": [
+    2,
+    2,
+    1
+  ],
+  "distance_coloring": [
+    0,
+    1
+  ],
+  "optimization_score": 4.96,
+  "graph": {
+    "n_vertices": 4,
+    "distance_colors": [
+      0,
+      1
+    ],
+    "edges": [
+      [
+        -1,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        -1
+      ]
+    ]
+  },
+  "timestamp": "2025-11-02T20:48:45.651511"
+}
