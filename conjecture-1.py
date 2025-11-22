@@ -13,20 +13,31 @@ def graph6_to_nx(graph6_str):
 subgraphs = load_graphs("subgraphs.txt")
 supergraphs = load_graphs("supergraphs.txt")
 
+verbose = False
+
 # Check all combinations
 for i, A in enumerate(supergraphs):
     A_comp = nx.complement(graph6_to_nx(A))
+    any_match = False
     for j, B in enumerate(subgraphs):
         B_comp = nx.complement(graph6_to_nx(B))
         GM = isomorphism.GraphMatcher(graph6_to_nx(A), graph6_to_nx(B))
         if GM.subgraph_is_isomorphic():
-            print(f"Supergraph #{i} contains Subgraph #{j}")
-            # Optional: print one example mapping
-            mapping = next(GM.subgraph_isomorphisms_iter())
-            print("  Example mapping:", mapping)
+            any_match = True
+            if verbose:
+                print(f"Supergraph #{i} contains Subgraph #{j}")
+                # Optional: print one example mapping
+                mapping = next(GM.subgraph_isomorphisms_iter())
+                print("  Example mapping:", mapping)
         elif nx.is_isomorphic(A_comp, B_comp):
-            print(f"Supergraph #{i} contains Subgraph #{j} (in complement)")
+            any_match = True
+            if verbose:
+                print(f"Supergraph #{i} contains Subgraph #{j} (in complement)")
         else:
-            print(f"Supergraph #{i} does NOT contain Subgraph #{j}")
-
+            if verbose:
+                print(f"Supergraph #{i} does NOT contain Subgraph #{j}")
+    if not any_match:
+        print(f"Supergraph #{i} contains NO subgraphs from the list. This is a counterexample.")
+        if not verbose:
+            break
         
